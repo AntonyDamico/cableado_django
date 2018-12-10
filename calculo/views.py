@@ -32,6 +32,4 @@ def calcular(request):
     cajas_json = utils.get_cajas_json(habitaciones)
     respuestas['cajas'] = cajas_json
 
-    print(respuestas)
-
     return JsonResponse(respuestas)
