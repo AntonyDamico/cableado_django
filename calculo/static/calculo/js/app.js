@@ -17,8 +17,8 @@ document
   .querySelector(".agregar-habitacion")
   .addEventListener("click", function() {
     selectOptions = getOpcionesHabitacion();
-    let indexAcutal = parseInt(habitaciones[habitaciones.length - 1].numero) + 1
-    console.log(habitaciones)
+    let indexAcutal =
+      parseInt(habitaciones[habitaciones.length - 1].numero) + 1;
     let tableRow = `
         <tr>
             <th class="align-middle">${indexAcutal}</th>
@@ -50,21 +50,21 @@ document
     resultadosDiv.style.display = "none";
   });
 
-function llenarHabitaciones() {
-  let habs = []
-  for (let i = 0; i < tablaUi.rows.length; i++) {
-    let row = tablaUi.rows[i].cells;
-    let valores = [...row].map(function(x) {
-      if (x.childElementCount > 0) {
-        return x.children[0].value;
-      } else {
-        return x.innerHTML;
-      }
-    });
-    habs.push(new Habitacion(...valores))
-  }
-  return habs
-}
+// function llenarHabitaciones() {
+//   let habs = []
+//   for (let i = 0; i < tablaUi.rows.length; i++) {
+//     let row = tablaUi.rows[i].cells;
+//     let valores = [...row].map(function(x) {
+//       if (x.childElementCount > 0) {
+//         return x.children[0].value;
+//       } else {
+//         return x.innerHTML;
+//       }
+//     });
+//     habs.push(new Habitacion(...valores))
+//   }
+//   return habs
+// }
 
 document.querySelector(".calcular").addEventListener("click", function() {
   resultadosDiv.style.display = "block";
@@ -80,4 +80,22 @@ document.querySelector(".calcular").addEventListener("click", function() {
   });
 
   habitaciones = llenarHabitaciones();
+  const margenError = margenErrorUi.value;
+  const constAereo = document.querySelector("#cable-computadora").value;
+  const precio = document.querySelector('#precio-cable').value
+  const pisos = document.querySelector('#pisos').value
+
+  data = {
+    habitaciones: habitaciones,
+    margenError: margenError,
+    constAereo, constAereo,
+    precio:precio,
+    pisos:pisos
+  }
+
+  
+  
+
+
+
 });
