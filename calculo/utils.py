@@ -1,32 +1,46 @@
 from .estructuras.Habitacion import Habitacion
+import json
 
 
-def parseHabitaciones(data, pos_caja_principal, const_mts):
+def parseHabitaciones(data, pos_caja_p, const_mts):
     data[0]['habAnterior'] = None
-    pos_caja_principal_arr = [
-        int(pos_caja_principal[0]),
-        int(pos_caja_principal[1])
-    ]
-    
-    habitaciones = [Habitacion(
-        int(data[0]['computadoras']), int(data[0]['x']),
-        int(data[0]['y']), int(data[0]['ancho']),
-        int(data[0]['alto']))]
-    habitaciones[0].agregar_caja_principal(*pos_caja_principal_arr)
+    habitaciones = [make_habitacion_principal(data[0], pos_caja_p)]
     data.pop(0)
 
-    for hab in data:
-        habitaciones.append(Habitacion(
-            int(hab['computadoras']),
-            int(hab['x']),
-            int(hab['y']),
-            int(hab['ancho']),
-            int(hab['alto']),
-            habitaciones[int(hab['habAnterior'])],
-            float(const_mts)
-        ))
+    habitaciones += [
+        make_habitacion(hab, habitaciones, const_mts) for hab in data
+    ]
 
     return habitaciones
+
+
+def make_habitacion_principal(data, caja_p):
+    habitacion_p = Habitacion(
+        int(data['computadoras']), int(data['x']),
+        int(data['y']), int(data['ancho']),
+        int(data['alto']))
+    habitacion_p.agregar_caja_principal(*[int(cord) for cord in caja_p])
+    return habitacion_p
+
+
+def make_habitacion(data, habitaciones, const_mts):
+    return Habitacion(
+        int(data['computadoras']),
+        int(data['x']),
+        int(data['y']),
+        int(data['ancho']),
+        int(data['alto']),
+        habitaciones[int(data['habAnterior'])],
+        float(const_mts)
+    )
+
+
+def get_cajas_json(habitaciones):
+    cajasArr = [hab.cajas for hab in habitaciones]
+    cajas_json = json.dumps(
+        [[caja.get_dict() for caja in cajas] for cajas in cajasArr]
+    )
+    return cajas_json
 
 
 def calcular(habitaciones, margen_error, precio, pisos):
