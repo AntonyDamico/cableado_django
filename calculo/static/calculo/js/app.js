@@ -1,6 +1,10 @@
 const margenErrorUi = document.querySelector("#margen-error");
 const tablaUi = document.querySelector(".tabla-habitaciones");
 const resultadosDiv = document.querySelector(".resultados-div");
+const selectPosCajaP = document.querySelector('#pos-caja-principal')
+
+const anchoPrinc = document.querySelector(".p-ancho")
+const altoPrinc = document.querySelector(".p-alto")
 
 let margenError = 12;
 margenErrorUi.value = "12";
@@ -13,10 +17,39 @@ let habitaciones = [habitacionObj];
 //   margenError = parseInt(margenErrorUi.value);
 // });
 
-function rangeValue(val){
+function cajaPrincipalPosOptions() {
+  let ancho = parseInt(anchoPrinc.value);
+  let alto = parseInt(altoPrinc.value);
+  let optionsArr = [[0, 0], [0, alto], [ancho, 0], [ancho, alto]];
+  let optionsStr = "";
+  for (let i = 0; i < optionsArr.length; i++) {
+    optionsStr += `
+      <option value="${optionsArr[i][0]}${optionsArr[i][1]}">
+        X:${optionsArr[i][0]}, Y:${optionsArr[i][1]}
+      </option>`;
+  }
+  console.log(optionsStr)
+  return optionsStr
+}
+
+function actualizarCajaPOptions() {
+  selectPosCajaP.innerHTML = cajaPrincipalPosOptions()
+}
+
+actualizarCajaPOptions()
+
+anchoPrinc.addEventListener('change', function(){
+  actualizarCajaPOptions()
+})
+altoPrinc.addEventListener('change', function(){
+  actualizarCajaPOptions()
+})
+
+function rangeValue(val) {
   document.querySelector(".margen-error-label").textContent = `${val}%`;
   margenError = parseInt(margenErrorUi.value);
 }
+
 
 // AGREGANDO HABITACION
 document
@@ -103,7 +136,8 @@ document.querySelector(".calcular").addEventListener("click", function() {
         if (count < tablaPisoUiCells.length) {
           tablaPisoUiCells[count].innerHTML = Math.round(res[key] * 100) / 100;
         } else if (count - 5 < tablaTotalUiCells.length) {
-          tablaTotalUiCells[count - 5].innerHTML = Math.round(res[key] * 100)/100;
+          tablaTotalUiCells[count - 5].innerHTML =
+            Math.round(res[key] * 100) / 100;
         } else {
           console.log("Las cajas llegan aqui!!!!!!");
         }

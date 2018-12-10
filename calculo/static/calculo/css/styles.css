@@ -29,3 +29,7 @@ span {
 .btn-orange {
     background-color: #FF851B;
 }
+
+#pos-caja-principal {
+    width: 100%
+}
