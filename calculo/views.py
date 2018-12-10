@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
+from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -17,15 +17,17 @@ def main(request):
 def calcular(request):
     data = request.data
     habitaciones = utils.parseHabitaciones(
-        data['habitaciones'], 
+        data['habitaciones'],
         data['posCajaPrincipal'],
         data['constAereo']
     )
-    margen_error = int(data['margenError'])
-    precio = float(data['precio'])
-    pisos = int(data['pisos'])
-
-    respuestas = utils.calcular(habitaciones, margen_error, precio, pisos)
+    
+    respuestas = utils.calcular(
+        habitaciones,
+        int(data['margenError']),
+        float(data['precio']),
+        int(data['pisos'])
+    )
 
     cajas_json = utils.get_cajas_json(habitaciones)
     respuestas['cajas'] = cajas_json
