@@ -33,5 +33,11 @@ class Caja:
             caja = self.get_caja_principal(caja_anterior)
         return caja
 
+    def get_dict(self):
+        return {
+            'x': self.x,
+            'y': self.y
+        }
+
     def __str__(self):
         return f'caja en posición X:{self.x} Y:{self.y}'

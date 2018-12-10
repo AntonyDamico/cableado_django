@@ -96,11 +96,11 @@ document.querySelector(".calcular").addEventListener("click", function() {
       let count = 0;
       for (var key in res) {
         if (count < tablaPisoUiCells.length) {
-          tablaPisoUiCells[count].innerHTML = res[key];
+          tablaPisoUiCells[count].innerHTML = Math.round(res[key] * 100) / 100;
         } else if (count - 5 < tablaTotalUiCells.length) {
-          tablaTotalUiCells[count - 5].innerHTML = res[key];
+          tablaTotalUiCells[count - 5].innerHTML = Math.round(res[key] * 100)/100;
         } else {
-          console.log("fjkldsjflsajlkdfjl");
+          console.log("Las cajas llegan aqui!!!!!!");
         }
         count++;
       }
