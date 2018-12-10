@@ -14,3 +14,18 @@ tr {
 .resultados-div {
     display: none;
 }
+
+.table-head {
+    background-color: #001f3f !important;
+    color: hsla(210, 100%, 75%, 1.0) !important;
+    border-color: black;
+} 
+
+span {
+    background-color: #001f3f !important;
+    color: hsla(210, 100%, 75%, 1.0) !important;
+}
+
+.btn-orange {
+    background-color: #FF851B;
+}
