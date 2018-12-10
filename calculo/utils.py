@@ -28,7 +28,7 @@ def parseHabitaciones(data, const_mts):
 def calcular(habitaciones, margen_error, precio, pisos):
     cableado_aereo = sum([hab.cableado_aereo for hab in habitaciones])
     cableado_bajada = sum([hab.cableado_bajada for hab in habitaciones])
-    error = margen_error * (cableado_aereo+cableado_bajada)
+    error = (margen_error/100) * (cableado_aereo+cableado_bajada)
     total_piso = cableado_aereo + cableado_bajada + error
     precio_piso = total_piso * precio
     total_edificio = total_piso * pisos

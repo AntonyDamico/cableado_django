@@ -3,7 +3,7 @@ const tablaUi = document.querySelector(".tabla-habitaciones");
 const resultadosDiv = document.querySelector(".resultados-div");
 
 // let margenError = 15;
-margenErrorUi.value = '15'
+margenErrorUi.value = "15";
 let habitaciones = [habitacionObj];
 
 // RANGE DEL MARGEN DE ERROR
@@ -51,18 +51,19 @@ document
     resultadosDiv.style.display = "none";
   });
 
+/* Calculando
+ * en tabla
+ * y guardando
+ */
 
-// Calculando
 document.querySelector(".calcular").addEventListener("click", function() {
   resultadosDiv.style.display = "block";
-  const tablaResultadosPisoUi = document.querySelector(
-    ".tabla-resultados-piso"
-  );
-  const tablaResultadosTotalUi = document.querySelector(
-    ".tabla-resultados-total"
-  );
+  const tablaPisoUiCells = document.querySelector(".tabla-resultados-piso")
+    .rows[0].cells;
+  const tablaTotalUiCells = document.querySelector(".tabla-resultados-total")
+    .rows[0].cells;
 
-  tablaResultadosTotalUi.scrollIntoView({
+  resultadosDiv.scrollIntoView({
     behavior: "smooth"
   });
 
@@ -91,6 +92,18 @@ document.querySelector(".calcular").addEventListener("click", function() {
     body: JSON.stringify(data)
   })
     .then(res => res.json())
-    .then(res => console.log(res))
+    .then(res => {
+      let count = 0;
+      for (var key in res) {
+        if (count < tablaPisoUiCells.length) {
+          tablaPisoUiCells[count].innerHTML = res[key];
+        } else if (count - 5 < tablaTotalUiCells.length) {
+          tablaTotalUiCells[count - 5].innerHTML = res[key];
+        } else {
+          console.log("fjkldsjflsajlkdfjl");
+        }
+        count++;
+      }
+    })
     .catch(err => console.log(err));
 });
