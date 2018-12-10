@@ -1,4 +1,4 @@
-from Caja import Caja
+from calculo.estructuras.Caja import Caja
 
 
 class CajaConstructor:

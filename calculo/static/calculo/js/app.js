@@ -2,7 +2,8 @@ const margenErrorUi = document.querySelector("#margen-error");
 const tablaUi = document.querySelector(".tabla-habitaciones");
 const resultadosDiv = document.querySelector(".resultados-div");
 
-let margenError = 15;
+// let margenError = 15;
+margenErrorUi.value = '15'
 let habitaciones = [habitacionObj];
 
 // RANGE DEL MARGEN DE ERROR
@@ -50,22 +51,8 @@ document
     resultadosDiv.style.display = "none";
   });
 
-// function llenarHabitaciones() {
-//   let habs = []
-//   for (let i = 0; i < tablaUi.rows.length; i++) {
-//     let row = tablaUi.rows[i].cells;
-//     let valores = [...row].map(function(x) {
-//       if (x.childElementCount > 0) {
-//         return x.children[0].value;
-//       } else {
-//         return x.innerHTML;
-//       }
-//     });
-//     habs.push(new Habitacion(...valores))
-//   }
-//   return habs
-// }
 
+// Calculando
 document.querySelector(".calcular").addEventListener("click", function() {
   resultadosDiv.style.display = "block";
   const tablaResultadosPisoUi = document.querySelector(
@@ -82,20 +69,28 @@ document.querySelector(".calcular").addEventListener("click", function() {
   habitaciones = llenarHabitaciones();
   const margenError = margenErrorUi.value;
   const constAereo = document.querySelector("#cable-computadora").value;
-  const precio = document.querySelector('#precio-cable').value
-  const pisos = document.querySelector('#pisos').value
+  const precio = document.querySelector("#precio-cable").value;
+  const pisos = document.querySelector("#pisos").value;
 
   data = {
-    habitaciones: habitaciones,
-    margenError: margenError,
-    constAereo, constAereo,
-    precio:precio,
-    pisos:pisos
-  }
+    habitaciones,
+    margenError,
+    constAereo,
+    precio,
+    pisos
+  };
 
-  
-  
+  const url = "http://localhost:8000/calculo";
 
-
-
+  fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-Requested-With": "XMLHttpRequest"
+    },
+    body: JSON.stringify(data)
+  })
+    .then(res => res.json())
+    .then(res => console.log(res))
+    .catch(err => console.log(err));
 });
