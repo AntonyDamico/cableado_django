@@ -1,1 +1,180 @@
-<h1>hallo calculo</h1>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    {% load static %}
+    <!-- <link rel="stylesheet" href="css/libs/bootstrap.min.css" /> -->
+    <link rel="stylesheet" href="{% static 'calculo/css/libs/bootstrap.min.css' %}">
+    <!-- <link rel="stylesheet" href="css/styles.css" /> -->
+    <link rel="stylesheet" href="{% static 'calculo/css/styles.css' %}">
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="text-center mb-4">Cálculo de Cableado</h1>
+
+      <div class="row mb-5">
+        <div class="col pl-5 pr-5 padding-side-inputs">
+          <label for="margen-error">Margen de Error</label>
+          <div class="input-group mb-4">
+            <input
+              type="range"
+              class="form-control"
+              id="margen-error"
+              min="0"
+              max="25"
+            />
+            <div class="input-group-append">
+              <span class="margen-error-label input-group-text">15%</span>
+            </div>
+          </div>
+
+          <label for="cable-computadora"
+            >Distancia de clable a computadoras</label
+          >
+          <div class="input-group">
+            <input
+              type="number"
+              id="cable-computadora"
+              class="form-control"
+              value="8"
+              min="0"
+            />
+            <div class="input-group-append">
+              <span class="input-group-text">m</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col pl-5 pr-5 padding-side-inputs">
+          <label for="precio-cable">Precio del metro de cable</label>
+
+          <div class="input-group mb-4">
+            <div class="input-group-prepend">
+              <span class="input-group-text">$/m</span>
+            </div>
+
+            <input
+              type="number"
+              id="precio-cable"
+              class="form-control"
+              min="0"
+            />
+          </div>
+
+          <label for="pisos">Pisos</label>
+
+          <input
+            type="number"
+            id="pisos"
+            class="form-control"
+            value="1"
+            min="0"
+          />
+        </div>
+      </div>
+
+      <hr />
+
+      <h3 class="mb-4">Ingrese los datos de las habitaciones:</h3>
+
+      <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th class="align-middle">#</th>
+            <th class="align-middle">Computadoras</th>
+            <th class="align-middle">Posición X</th>
+            <th class="align-middle">Posición Y</th>
+            <th class="align-middle">Ancho</th>
+            <th class="align-middle">Alto</th>
+            <th class="align-middle">Habitacion Anterior</th>
+          </tr>
+        </thead>
+        <tbody class="tabla-habitaciones">
+          <tr>
+            <th class="align-middle">0</th>
+            <td class="align-middle">0</td>
+            <td><input type="number" class="xpos form-control" min="0" /></td>
+            <td><input type="number" class="ypos form-control" min="0" /></td>
+            <td><input type="number" class="ancho form-control" min="0" /></td>
+            <td><input type="number" class="alto form-control" min="0" /></td>
+            <td class="align-middle">Ninguna</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="row mb-5">
+        <div class="offset-md-1 col-md-3">
+          <button class="btn btn-dark btn-block agregar-habitacion">
+            Agregar Habitacion
+          </button>
+        </div>
+
+        <div class="col-md-3">
+          <button class="btn btn-dark btn-block calcular">Calcular</button>
+        </div>
+
+        <div class="col-md-3">
+          <button class="btn btn-dark btn-block borrar-habitaciones">
+            Borrar
+          </button>
+        </div>
+      </div>
+
+      <div class="resultados-div">
+        <hr />
+        <h1 class="text-center mb-4 mt-5">Resultados</h1>
+        <table class="table table-bordered table-hover">
+          <thead class="thead-dark">
+            <tr>
+              <th class="align-middle">Cableado Aereo (m)</th>
+              <th class="align-middle">Cableado Bajada (m)</th>
+              <th class="align-middle">Error (%)</th>
+              <th class="align-middle">Total por Piso (m)</th>
+              <th class="align-middle">Precio por piso ($)</th>
+            </tr>
+          </thead>
+          <tbody class="tabla-resultados-piso">
+            <tr>
+              <td class="align-middle">0</td>
+              <td class="align-middle">0</td>
+              <td class="align-middle">0</td>
+              <td class="align-middle">0</td>
+              <td class="align-middle">0</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="row">
+          <div class="offset-md-4 col-md-4">
+            <table class="table table-bordered table-hover">
+              <thead class="thead-dark">
+                <tr>
+                  <th class="align-middle">Total (m)</th>
+                  <th class="align-middle">Precio ($)</th>
+                </tr>
+              </thead>
+              <tbody class="tabla-resultados-total">
+                <tr>
+                  <td class="align-middle">0</td>
+                  <td class="align-middle">0</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <script src="js/libs/jquery.min.js"></script> -->
+    <script src="{% static 'calculo/js/libs/jquery.min.js' %}"></script>
+    <!-- <script src="js/libs/bootstrap.min.js"></script> -->
+    <script src="{% static 'calculo/js/libs/bootstrap.min.js' %}"></script>
+    <!-- <script src="js/utils.js"></script> -->
+    <script src="{% static 'calculo/js/utils.js' %}"></script>
+    <!-- <script src="js/app.js"></script> -->
+    <script src="{% static 'calculo/js/app.js' %}"></script>
+  </body>
+</html>
