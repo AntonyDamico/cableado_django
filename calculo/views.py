@@ -16,7 +16,6 @@ def main(request):
 @csrf_exempt
 def calcular(request):
     data = request.data
-    print(data)
     habitaciones = utils.parseHabitaciones(
         data['habitaciones'], 
         data['constAereo']
