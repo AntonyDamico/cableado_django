@@ -1,14 +1,18 @@
 from .estructuras.Habitacion import Habitacion
 
 
-def parseHabitaciones(data, const_mts):
+def parseHabitaciones(data, pos_caja_principal, const_mts):
     data[0]['habAnterior'] = None
-
+    pos_caja_principal_arr = [
+        int(pos_caja_principal[0]),
+        int(pos_caja_principal[1])
+    ]
+    
     habitaciones = [Habitacion(
         int(data[0]['computadoras']), int(data[0]['x']),
         int(data[0]['y']), int(data[0]['ancho']),
         int(data[0]['alto']))]
-    habitaciones[0].agregar_caja_principal(0, 0)
+    habitaciones[0].agregar_caja_principal(*pos_caja_principal_arr)
     data.pop(0)
 
     for hab in data:

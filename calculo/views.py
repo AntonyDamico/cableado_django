@@ -19,6 +19,7 @@ def calcular(request):
     data = request.data
     habitaciones = utils.parseHabitaciones(
         data['habitaciones'], 
+        data['posCajaPrincipal'],
         data['constAereo']
     )
     margen_error = int(data['margenError'])

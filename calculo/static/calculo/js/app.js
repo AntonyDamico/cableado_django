@@ -28,7 +28,6 @@ function cajaPrincipalPosOptions() {
         X:${optionsArr[i][0]}, Y:${optionsArr[i][1]}
       </option>`;
   }
-  console.log(optionsStr)
   return optionsStr
 }
 
@@ -110,13 +109,15 @@ document.querySelector(".calcular").addEventListener("click", function() {
   const constAereo = document.querySelector("#cable-computadora").value;
   const precio = document.querySelector("#precio-cable").value;
   const pisos = document.querySelector("#pisos").value;
+  const posCajaPrincipal = selectPosCajaP.value
 
   data = {
     habitaciones,
     margenError,
     constAereo,
     precio,
-    pisos
+    pisos,
+    posCajaPrincipal
   };
 
   const url = "http://localhost:8000/calculo";
