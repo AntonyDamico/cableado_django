@@ -7,9 +7,8 @@ def parseHabitaciones(data, pos_caja_p, const_mts):
     habitaciones = [make_habitacion_principal(data[0], pos_caja_p)]
     data.pop(0)
 
-    habitaciones += [
-        make_habitacion(hab, habitaciones, const_mts) for hab in data
-    ]
+    for hab in data:
+        habitaciones.append(make_habitacion(hab, habitaciones, const_mts))
 
     return habitaciones
 

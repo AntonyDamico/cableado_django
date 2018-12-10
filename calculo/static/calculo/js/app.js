@@ -140,7 +140,7 @@ document.querySelector(".calcular").addEventListener("click", function() {
           tablaTotalUiCells[count - 5].innerHTML =
             Math.round(res[key] * 100) / 100;
         } else {
-          console.log("Las cajas llegan aqui!!!!!!");
+          console.log("Las cajas llegan aqui!!!!!!", res[key]);
         }
         count++;
       }

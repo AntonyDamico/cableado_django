@@ -21,7 +21,7 @@ def calcular(request):
         data['posCajaPrincipal'],
         data['constAereo']
     )
-    
+
     respuestas = utils.calcular(
         habitaciones,
         int(data['margenError']),
@@ -31,5 +31,7 @@ def calcular(request):
 
     cajas_json = utils.get_cajas_json(habitaciones)
     respuestas['cajas'] = cajas_json
+
+    print(respuestas)
 
     return JsonResponse(respuestas)
