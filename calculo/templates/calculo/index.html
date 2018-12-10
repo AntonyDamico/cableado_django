@@ -25,9 +25,10 @@
               id="margen-error"
               min="0"
               max="25"
+              oninput="rangeValue(this.value)"
             />
             <div class="input-group-append">
-              <span class="margen-error-label input-group-text">15%</span>
+              <span class="margen-error-label input-group-text">12%</span>
             </div>
           </div>
 
@@ -53,7 +54,7 @@
 
           <div class="input-group mb-4">
             <div class="input-group-prepend">
-              <span class="input-group-text">$/m</span>
+              <span class="input-group-text">$</span>
             </div>
 
             <input
@@ -66,16 +67,24 @@
           </div>
 
           <label for="pisos">Pisos</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Ps.</span>
+            </div>
 
-          <input
-            type="number"
-            id="pisos"
-            class="form-control"
-            value="1"
-            min="0"
-          />
+            <input
+              type="number"
+              id="pisos"
+              class="form-control"
+              value="1"
+              min="0"
+            />
+          </div>
         </div>
       </div>
+
+
+      <h2>Posicion de caja en habitacion inicial</h2>
 
       <hr />
 

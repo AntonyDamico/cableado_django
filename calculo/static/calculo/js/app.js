@@ -2,16 +2,21 @@ const margenErrorUi = document.querySelector("#margen-error");
 const tablaUi = document.querySelector(".tabla-habitaciones");
 const resultadosDiv = document.querySelector(".resultados-div");
 
-// let margenError = 15;
-margenErrorUi.value = "15";
+let margenError = 12;
+margenErrorUi.value = "12";
 let habitaciones = [habitacionObj];
 
 // RANGE DEL MARGEN DE ERROR
 
-margenErrorUi.addEventListener("change", function() {
-  document.querySelector(".margen-error-label").textContent = `${this.value}%`;
+// margenErrorUi.addEventListener("oninput", function() {
+//   document.querySelector(".margen-error-label").textContent = `${this.value}%`;
+//   margenError = parseInt(margenErrorUi.value);
+// });
+
+function rangeValue(val){
+  document.querySelector(".margen-error-label").textContent = `${val}%`;
   margenError = parseInt(margenErrorUi.value);
-});
+}
 
 // AGREGANDO HABITACION
 document
