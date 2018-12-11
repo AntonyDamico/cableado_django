@@ -33,3 +33,7 @@ span {
 #pos-caja-principal {
     width: 100%
 }
+
+canvas {
+    border: 1px solid black;
+  }

@@ -1,10 +1,10 @@
 const margenErrorUi = document.querySelector("#margen-error");
 const tablaUi = document.querySelector(".tabla-habitaciones");
 const resultadosDiv = document.querySelector(".resultados-div");
-const selectPosCajaP = document.querySelector('#pos-caja-principal')
+const selectPosCajaP = document.querySelector("#pos-caja-principal");
 
-const anchoPrinc = document.querySelector(".p-ancho")
-const altoPrinc = document.querySelector(".p-alto")
+const anchoPrinc = document.querySelector(".p-ancho");
+const altoPrinc = document.querySelector(".p-alto");
 
 let margenError = 12;
 margenErrorUi.value = "12";
@@ -28,27 +28,26 @@ function cajaPrincipalPosOptions() {
         X:${optionsArr[i][0]}, Y:${optionsArr[i][1]}
       </option>`;
   }
-  return optionsStr
+  return optionsStr;
 }
 
 function actualizarCajaPOptions() {
-  selectPosCajaP.innerHTML = cajaPrincipalPosOptions()
+  selectPosCajaP.innerHTML = cajaPrincipalPosOptions();
 }
 
-actualizarCajaPOptions()
+actualizarCajaPOptions();
 
-anchoPrinc.addEventListener('change', function(){
-  actualizarCajaPOptions()
-})
-altoPrinc.addEventListener('change', function(){
-  actualizarCajaPOptions()
-})
+anchoPrinc.addEventListener("change", function() {
+  actualizarCajaPOptions();
+});
+altoPrinc.addEventListener("change", function() {
+  actualizarCajaPOptions();
+});
 
 function rangeValue(val) {
   document.querySelector(".margen-error-label").textContent = `${val}%`;
   margenError = parseInt(margenErrorUi.value);
 }
-
 
 // AGREGANDO HABITACION
 document
@@ -109,7 +108,7 @@ document.querySelector(".calcular").addEventListener("click", function() {
   const constAereo = document.querySelector("#cable-computadora").value;
   const precio = document.querySelector("#precio-cable").value;
   const pisos = document.querySelector("#pisos").value;
-  const posCajaPrincipal = selectPosCajaP.value
+  const posCajaPrincipal = selectPosCajaP.value;
 
   data = {
     habitaciones,
@@ -141,9 +140,64 @@ document.querySelector(".calcular").addEventListener("click", function() {
             Math.round(res[key] * 100) / 100;
         } else {
           console.log("Las cajas llegan aqui!!!!!!", res[key]);
+          let cajasArr = JSON.parse(res[key])
+          draw(habitaciones, cajasArr)
         }
         count++;
       }
     })
     .catch(err => console.log(err));
 });
+
+function draw(habitaciones, cajas) {
+  // habitaciones = [
+  //   { x: 0, y: 0, ancho: 4, alto: 4 },
+  //   {x:4, y:0, ancho: 4, alto:4},
+  //   { x: 8, y: 0, ancho: 8, alto: 4 },
+  //   { x: 0, y: 4, ancho: 4, alto: 8 }
+  // ];
+
+  // cajas = [
+  //   [{ x: 0, y: 0 }, { x: 4, y: 0 }],
+  //   [{x:0, y:0}],
+  //   [{ x: 0, y: 0 }],
+  //   [{ x: 0, y: 0 }]
+  // ];
+
+  const canvas = document.getElementById("canvas");
+  const ctx = canvas.getContext("2d");
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  for (let i = 0; i < habitaciones.length; i++) {
+    ctx.strokeRect(
+      25 * habitaciones[i].x + 10,
+      25 * habitaciones[i].y + 10,
+      habitaciones[i].ancho * 25,
+      habitaciones[i].alto * 25
+    );
+    for (let j = 0; j < cajas[i].length; j++) {
+      
+      for(var key in cajas[i][j]) {
+        cajas[i][j][key] *= 25
+        if (cajas[i][j][key] > 0) {
+          cajas[i][j][key] -= 20
+        }
+      }
+
+      ctx.fillRect(
+        25 * habitaciones[i].x + 10 + cajas[i][j].x,
+        25 * habitaciones[i].y + 10 + cajas[i][j].y,
+        20,
+        20
+      );
+    }
+  }
+
+  // ctx.fillStyle = "rgb(200, 0, 0)";
+  // ctx.strokeRect(10, 10, 100, 100);
+  // ctx.fillRect(10, 10, 40, 40)
+  // ctx.fillRect(100-40+10, 10, 40, 40)
+  // ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
+  // ctx.strokeRect(110, 10, 100, 100);
+}
+
