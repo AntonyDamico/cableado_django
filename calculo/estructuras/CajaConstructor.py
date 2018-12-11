@@ -26,6 +26,11 @@ class CajaConstructor:
         caja_anterior = self.habitacion.hab_anterior.cajas[-1]
         habitacion_nueva_caja = self.habitacion
         new_x, new_y = self.get_posicion(caja_anterior)
+        if new_x > 0:
+            new_x = self.habitacion.ancho
+
+        if new_y>0:
+            new_y = self.habitacion.alto
         return Caja(new_x, new_y, habitacion_nueva_caja, caja_anterior)
 
     def get_posicion(self, caja_anterior):

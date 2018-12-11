@@ -30,7 +30,7 @@ class Habitacion:
         self.cableado_bajada = 0
 
         if hab_anterior is not None:
-            # si la habitación anterior no es principal y se cambió la horientación
+            # si la habitación anterior no es principal y se cambió la orientación
             if not hab_anterior.principal and self.cambio_orientacion():
                 # se agrega una segunda caja a la habitación anterior
                 self.hab_anterior.agregar_caja()
@@ -68,10 +68,12 @@ class Habitacion:
         las habitaciones puede ser horizontal o vertical
         '''
         if self.hab_anterior is not None:
+            orientacion = ''
             if self.hab_anterior.x != self.x:
-                return 'horizontal'
+                orientacion += 'horizontal'
             if self.hab_anterior.y != self.y:
-                return 'vertical'
+                orientacion += 'vertical'
+            return orientacion
         print('no hay hab anterior')
         return None
 
