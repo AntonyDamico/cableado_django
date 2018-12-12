@@ -16,9 +16,11 @@ def main(request):
 @csrf_exempt
 def calcular(request):
     data = request.data
+    pos_caja_p = utils.calcular_pos_caja_principal(data['habitaciones'])
     habitaciones = utils.parseHabitaciones(
         data['habitaciones'],
-        data['posCajaPrincipal'],
+        # data['posCajaPrincipal'],
+        pos_caja_p,
         data['constAereo']
     )
 

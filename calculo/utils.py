@@ -18,7 +18,7 @@ def make_habitacion_principal(data, caja_p):
         int(data['computadoras']), int(data['x']),
         int(data['y']), int(data['ancho']),
         int(data['alto']))
-    caja_p = caja_p.split(',')
+    # caja_p = caja_p.split(',')
     habitacion_p.agregar_caja_principal(*[int(cord) for cord in caja_p])
     return habitacion_p
 
@@ -61,3 +61,20 @@ def calcular(habitaciones, margen_error, precio, pisos):
         'total_edificio': total_edificio,
         'precio_edificio': precio_edificio
     }
+
+
+def calcular_pos_caja_principal(habitaciones):
+    hab_p = habitaciones[0]
+    habs_arr = habitaciones[1:]
+    pos_final = [0, 0]
+    p_vecinos = [hab for hab in habs_arr if hab['habAnterior'] == 0]
+    for vecino in p_vecinos:
+        if hab_p['y'] == vecino['y'] and hab_p['x'] > vecino['x']:
+            pos_final[0] = hab_p['ancho']
+
+        if hab_p['x'] == vecino['x'] and hab_p['y'] > vecino['y']:
+            pos_final[1] = hab_p['alto']
+        
+
+
+    return pos_final
