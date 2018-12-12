@@ -25,10 +25,8 @@ def make_habitacion_principal(data, caja_p):
 def make_habitacion(data, habitaciones, const_mts):
     return Habitacion(
         data['computadoras'],
-        data['x'],
-        data['y'],
-        data['ancho'],
-        data['alto'],
+        data['x'], data['y'],
+        data['ancho'], data['alto'],
         habitaciones[data['habAnterior']],
         const_mts
     )

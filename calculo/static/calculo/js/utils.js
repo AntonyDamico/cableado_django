@@ -49,12 +49,12 @@ function llenarHabitaciones() {
         return x.innerHTML;
       }
     });
-    let valoresInt = valores.map(function(x){
-      if(!isNaN(x)) {
-        return parseInt(x)
+    let valoresInt = valores.map(function(x) {
+      if (!isNaN(x)) {
+        return parseInt(x);
       }
-      return x
-    })
+      return x;
+    });
     habs.push(new Habitacion(...valoresInt));
   }
   return habs;

@@ -1,7 +1,7 @@
 const margenErrorUi = document.querySelector("#margen-error");
 const tablaUi = document.querySelector(".tabla-habitaciones");
 const resultadosDiv = document.querySelector(".resultados-div");
-const selectPosCajaP = document.querySelector("#pos-caja-principal");
+// const selectPosCajaP = document.querySelector("#pos-caja-principal");
 
 const anchoPrinc = document.querySelector(".p-ancho");
 const altoPrinc = document.querySelector(".p-alto");
@@ -31,11 +31,11 @@ function cajaPrincipalPosOptions() {
   return optionsStr;
 }
 
-function actualizarCajaPOptions() {
-  selectPosCajaP.innerHTML = cajaPrincipalPosOptions();
-}
+// function actualizarCajaPOptions() {
+//   selectPosCajaP.innerHTML = cajaPrincipalPosOptions();
+// }
 
-actualizarCajaPOptions();
+// actualizarCajaPOptions();
 
 anchoPrinc.addEventListener("change", function() {
   actualizarCajaPOptions();
@@ -105,7 +105,9 @@ document.querySelector(".calcular").addEventListener("click", function() {
 
   habitaciones = llenarHabitaciones();
   const margenError = parseInt(margenErrorUi.value);
-  const constAereo = parseInt(document.querySelector("#cable-computadora").value);
+  const constAereo = parseInt(
+    document.querySelector("#cable-computadora").value
+  );
   const precio = parseInt(document.querySelector("#precio-cable").value);
   const pisos = parseInt(document.querySelector("#pisos").value);
   // const posCajaPrincipal = selectPosCajaP.value;
@@ -115,7 +117,7 @@ document.querySelector(".calcular").addEventListener("click", function() {
     margenError,
     constAereo,
     precio,
-    pisos,
+    pisos
     // posCajaPrincipal
   };
 
@@ -139,8 +141,8 @@ document.querySelector(".calcular").addEventListener("click", function() {
           tablaTotalUiCells[count - 5].innerHTML =
             Math.round(res[key] * 100) / 100;
         } else {
-          let cajasArr = JSON.parse(res[key])
-          draw(habitaciones, cajasArr)
+          let cajasArr = JSON.parse(res[key]);
+          draw(habitaciones, cajasArr);
         }
         count++;
       }
@@ -161,11 +163,10 @@ function draw(habitaciones, cajas) {
       habitaciones[i].alto * 25
     );
     for (let j = 0; j < cajas[i].length; j++) {
-      
-      for(var key in cajas[i][j]) {
-        cajas[i][j][key] *= 25
+      for (var key in cajas[i][j]) {
+        cajas[i][j][key] *= 25;
         if (cajas[i][j][key] > 0) {
-          cajas[i][j][key] -= 20
+          cajas[i][j][key] -= 20;
         }
       }
 
@@ -185,4 +186,3 @@ function draw(habitaciones, cajas) {
   // ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
   // ctx.strokeRect(110, 10, 100, 100);
 }
-
