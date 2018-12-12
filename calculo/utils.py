@@ -75,6 +75,11 @@ def calcular_pos_caja_principal(habitaciones):
         if hab_p['x'] == vecino['x'] and hab_p['y'] > vecino['y']:
             pos_final[1] = hab_p['alto']
         
+        if hab_p['x'] != vecino['x'] and hab_p['y'] != vecino['y']:
+            if hab_p['y'] > vecino['y']:
+                pos_final[1] = hab_p['alto']
 
+            if hab_p['x'] < vecino['x']:
+                pos_final[0] = hab_p['ancho']
 
     return pos_final
