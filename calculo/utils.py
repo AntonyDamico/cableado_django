@@ -18,6 +18,7 @@ def make_habitacion_principal(data, caja_p):
         int(data['computadoras']), int(data['x']),
         int(data['y']), int(data['ancho']),
         int(data['alto']))
+    caja_p = caja_p.split(',')
     habitacion_p.agregar_caja_principal(*[int(cord) for cord in caja_p])
     return habitacion_p
 

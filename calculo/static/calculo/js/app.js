@@ -24,7 +24,7 @@ function cajaPrincipalPosOptions() {
   let optionsStr = "";
   for (let i = 0; i < optionsArr.length; i++) {
     optionsStr += `
-      <option value="${optionsArr[i][0]}${optionsArr[i][1]}">
+      <option value="${optionsArr[i][0]},${optionsArr[i][1]}">
         X:${optionsArr[i][0]}, Y:${optionsArr[i][1]}
       </option>`;
   }
@@ -139,7 +139,6 @@ document.querySelector(".calcular").addEventListener("click", function() {
           tablaTotalUiCells[count - 5].innerHTML =
             Math.round(res[key] * 100) / 100;
         } else {
-          console.log("Las cajas llegan aqui!!!!!!", res[key]);
           let cajasArr = JSON.parse(res[key])
           draw(habitaciones, cajasArr)
         }
@@ -150,20 +149,6 @@ document.querySelector(".calcular").addEventListener("click", function() {
 });
 
 function draw(habitaciones, cajas) {
-  // habitaciones = [
-  //   { x: 0, y: 0, ancho: 4, alto: 4 },
-  //   {x:4, y:0, ancho: 4, alto:4},
-  //   { x: 8, y: 0, ancho: 8, alto: 4 },
-  //   { x: 0, y: 4, ancho: 4, alto: 8 }
-  // ];
-
-  // cajas = [
-  //   [{ x: 0, y: 0 }, { x: 4, y: 0 }],
-  //   [{x:0, y:0}],
-  //   [{ x: 0, y: 0 }],
-  //   [{ x: 0, y: 0 }]
-  // ];
-
   const canvas = document.getElementById("canvas");
   const ctx = canvas.getContext("2d");
   ctx.clearRect(0, 0, canvas.width, canvas.height);
