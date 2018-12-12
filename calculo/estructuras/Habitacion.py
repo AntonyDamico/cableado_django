@@ -1,5 +1,5 @@
-from calculo.estructuras.Caja import Caja
-from calculo.estructuras.CajaConstructor import CajaConstructor
+from .Caja import Caja
+from .CajaConstructor import CajaConstructor
 
 
 class Habitacion:
