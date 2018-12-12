@@ -25,9 +25,9 @@ def calcular(request):
 
     respuestas = utils.calcular(
         habitaciones,
-        int(data['margenError']),
-        float(data['precio']),
-        int(data['pisos'])
+        data['margenError'],
+        data['precio'],
+        data['pisos']
     )
 
     cajas_json = utils.get_cajas_json(habitaciones)

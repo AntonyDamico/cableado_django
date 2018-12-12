@@ -104,11 +104,11 @@ document.querySelector(".calcular").addEventListener("click", function() {
   });
 
   habitaciones = llenarHabitaciones();
-  const margenError = margenErrorUi.value;
-  const constAereo = document.querySelector("#cable-computadora").value;
-  const precio = document.querySelector("#precio-cable").value;
-  const pisos = document.querySelector("#pisos").value;
-  const posCajaPrincipal = selectPosCajaP.value;
+  const margenError = parseInt(margenErrorUi.value);
+  const constAereo = parseInt(document.querySelector("#cable-computadora").value);
+  const precio = parseInt(document.querySelector("#precio-cable").value);
+  const pisos = parseInt(document.querySelector("#pisos").value);
+  // const posCajaPrincipal = selectPosCajaP.value;
 
   data = {
     habitaciones,
@@ -116,7 +116,7 @@ document.querySelector(".calcular").addEventListener("click", function() {
     constAereo,
     precio,
     pisos,
-    posCajaPrincipal
+    // posCajaPrincipal
   };
 
   const url = "http://localhost:8000/calculo";

@@ -15,22 +15,22 @@ def parseHabitaciones(data, pos_caja_p, const_mts):
 
 def make_habitacion_principal(data, caja_p):
     habitacion_p = Habitacion(
-        int(data['computadoras']), int(data['x']),
-        int(data['y']), int(data['ancho']),
-        int(data['alto']))
-    habitacion_p.agregar_caja_principal(*[int(cord) for cord in caja_p])
+        data['computadoras'], data['x'],
+        data['y'], data['ancho'],
+        data['alto'])
+    habitacion_p.agregar_caja_principal(*[cord for cord in caja_p])
     return habitacion_p
 
 
 def make_habitacion(data, habitaciones, const_mts):
     return Habitacion(
-        int(data['computadoras']),
-        int(data['x']),
-        int(data['y']),
-        int(data['ancho']),
-        int(data['alto']),
-        habitaciones[int(data['habAnterior'])],
-        float(const_mts)
+        data['computadoras'],
+        data['x'],
+        data['y'],
+        data['ancho'],
+        data['alto'],
+        habitaciones[data['habAnterior']],
+        const_mts
     )
 
 
