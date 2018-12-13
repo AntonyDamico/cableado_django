@@ -45,9 +45,10 @@ class CajaConstructor:
         # Si ya hay una caja en la habitacion, se calcula una nueva posicion
         if self.habitacion.cajas:
             caja_anterior = self.habitacion.cajas[0]
-            if self.habitacion.check_orientacion() == 'horizontal':
+            orientacion =  self.habitacion.check_orientacion()
+            if orientacion == 'horizontal' or orientacion == 'horizontalvertical':
                 new_x = self.get_nueva_posicion(caja_anterior.x, self.habitacion.ancho)
-            if self.habitacion.check_orientacion() == 'vertical':
+            if orientacion == 'vertical' or orientacion == 'horizontalvertical':
                 new_y = self.get_nueva_posicion(caja_anterior.y, self.habitacion.alto)
 
         return new_x, new_y

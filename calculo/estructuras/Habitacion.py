@@ -33,6 +33,7 @@ class Habitacion:
             # si la habitación anterior no es principal y se cambió la orientación
             if not hab_anterior.principal and self.cambio_orientacion():
                 # se agrega una segunda caja a la habitación anterior
+                print('hola 36 Habitacion.py')
                 self.hab_anterior.agregar_caja()
             # agregando caja a la habitación actual
             self.agregar_caja()
@@ -69,10 +70,12 @@ class Habitacion:
         '''
         if self.hab_anterior is not None:
             orientacion = ''
-            if self.hab_anterior.x != self.x:
-                orientacion += 'horizontal'
-            if self.hab_anterior.y != self.y:
+            anterior = self.hab_anterior
+            if anterior.x == self.x or anterior.x + anterior.ancho == self.x + self.ancho:
                 orientacion += 'vertical'
+            elif anterior.y == self.y or anterior.y + anterior.alto == self.y + self.alto:
+                orientacion += 'horizontal'
+            print(orientacion, self.x, self.y)
             return orientacion
         print('no hay hab anterior')
         return None
