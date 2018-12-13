@@ -67,11 +67,13 @@ def calcular_pos_caja_principal(habitaciones):
     p_vecinos = [hab for hab in habs_arr if hab['habAnterior'] == 0]
 
     for vecino in p_vecinos:
-        if hab_p['x'] < vecino['x']:
+        # if hab_p['x'] < vecino['x']:
+        #     pos_final[0] = hab_p['ancho']
+        
+        if hab_p['x'] > vecino['x']:
             pos_final[0] = hab_p['ancho']
 
         if hab_p['y'] > vecino['y']:
             pos_final[1] = hab_p['alto']
-
-    # return pos_final
-    return [0,10]
+    return pos_final
+    # return [0,10]
