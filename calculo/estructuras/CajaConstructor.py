@@ -28,7 +28,6 @@ class CajaConstructor:
         new_x, new_y = self.get_posicion(caja_anterior)
         if new_x > 0:
             new_x = self.habitacion.ancho
-
         if new_y>0:
             new_y = self.habitacion.alto
         return Caja(new_x, new_y, habitacion_nueva_caja, caja_anterior)
@@ -46,9 +45,9 @@ class CajaConstructor:
         if self.habitacion.cajas:
             caja_anterior = self.habitacion.cajas[0]
             orientacion =  self.habitacion.check_orientacion()
-            if orientacion == 'horizontal' or orientacion == 'horizontalvertical':
+            if orientacion == 'horizontal':
                 new_x = self.get_nueva_posicion(caja_anterior.x, self.habitacion.ancho)
-            if orientacion == 'vertical' or orientacion == 'horizontalvertical':
+            if orientacion == 'vertical':
                 new_y = self.get_nueva_posicion(caja_anterior.y, self.habitacion.alto)
 
         return new_x, new_y
@@ -60,5 +59,5 @@ class CajaConstructor:
         Si no los estaba, lo devuelve a la pared que sea 0
         '''
         if caja_anterior_pos == 0:
-            return caja_anterior_pos + distancia
+            return distancia
         return 0
