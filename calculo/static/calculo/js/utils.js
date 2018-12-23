@@ -8,11 +8,25 @@ const habitacionObj = {
   habAnterior: 0
 };
 
+const cajaObj = {
+  numero: 0,
+  computadoras: 0,
+  x: 0,
+  y: 0
+};
+
 function getNewHabitacionObj() {
   let newHab = Object.assign({}, habitacionObj);
   let numeroAct = parseInt(habitaciones[habitaciones.length - 1].numero) + 1;
   newHab["numero"] = numeroAct;
   return newHab;
+}
+
+function getNewCajaObj() {
+  let newCaja = Object.assign({}, cajaObj);
+  let numeroAct = parseInt(cajas[cajas.length - 1].numero) + 1;
+  newCaja["numero"] = numeroAct;
+  return newCaja;
 }
 
 function getOpcionesHabitacion() {

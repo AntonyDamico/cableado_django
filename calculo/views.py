@@ -14,7 +14,7 @@ def main(request):
 
 @csrf_exempt
 def main2(request):
-    return render(request, 'calculo/index.html', {})
+    return render(request, 'calculo/index2.html', {})
 
 
 @api_view(['POST'])
@@ -28,7 +28,7 @@ def calcular(request):
         data['constAereo']
     )
 
-    respuestas = utils.calcular(
+    respuestas = utils.calcular_habitaciones(
         habitaciones,
         data['margenError'],
         data['precio'],

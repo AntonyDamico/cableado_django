@@ -40,7 +40,7 @@ def get_cajas_json(habitaciones):
     return cajas_json
 
 
-def calcular(habitaciones, margen_error, precio, pisos):
+def calcular_habitaciones(habitaciones, margen_error, precio, pisos):
     cableado_aereo = sum([hab.cableado_aereo for hab in habitaciones])
     cableado_bajada = sum([hab.cableado_bajada for hab in habitaciones])
     error = (margen_error/100) * (cableado_aereo+cableado_bajada)
@@ -69,7 +69,7 @@ def calcular_pos_caja_principal(habitaciones):
     for vecino in p_vecinos:
         # if hab_p['x'] < vecino['x']:
         #     pos_final[0] = hab_p['ancho']
-        
+
         if hab_p['x'] > vecino['x']:
             pos_final[0] = hab_p['ancho']
 
