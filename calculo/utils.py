@@ -1,4 +1,5 @@
 from .estructuras.Habitacion import Habitacion
+from .estructuras.Caja import Caja
 import json
 
 
@@ -11,12 +12,6 @@ def parseHabitaciones(data, pos_caja_p, const_mts):
         habitaciones.append(make_habitacion(hab, habitaciones, const_mts))
 
     return habitaciones
-
-def parseCajas(data, const_mts):
-    cajas = []
-    for caja in data:
-        cajas.append(make_caja(caja, const_mts))
-
 
 def make_habitacion_principal(data, caja_p):
     habitacion_p = Habitacion(
@@ -35,6 +30,16 @@ def make_habitacion(data, habitaciones, const_mts):
         habitaciones[data['habAnterior']],
         const_mts
     )
+
+
+def parseCajas(data):
+    cajas = []
+    for caja in data:
+        cajas.append(make_caja(caja))
+    return cajas
+
+def make_caja(data):
+    return Caja(data['x'], data['y'])
 
 
 def get_cajas_json(habitaciones):
@@ -63,6 +68,11 @@ def calcular_habitaciones(habitaciones, margen_error, precio, pisos):
         'total_edificio': total_edificio,
         'precio_edificio': precio_edificio
     }
+
+def calcular_cajas(cajas, const_mts, margen_error, precio, pisos):
+    for caja in cajas:
+        print(caja)
+    return 0
 
 
 def calcular_pos_caja_principal(habitaciones):
