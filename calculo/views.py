@@ -40,3 +40,10 @@ def calcular(request):
     respuestas['cajas'] = cajas_json
 
     return JsonResponse(respuestas)
+
+
+@api_view(['POST'])
+@csrf_exempt
+def calcular2(request):
+    print(request.data)
+    return JsonResponse({'d':2})

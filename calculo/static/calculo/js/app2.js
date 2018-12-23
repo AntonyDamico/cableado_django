@@ -53,7 +53,7 @@ document.querySelector(".calcular").addEventListener("click", function() {
     behavior: "smooth"
   });
 
-  habitaciones = llenarHabitaciones();
+  cajas = llenarHabitaciones();
   const margenError = parseInt(margenErrorUi.value);
   const constAereo = parseInt(
     document.querySelector("#cable-computadora").value
@@ -63,7 +63,7 @@ document.querySelector(".calcular").addEventListener("click", function() {
   // const posCajaPrincipal = selectPosCajaP.value;
 
   data = {
-    habitaciones,
+    cajas,
     margenError,
     constAereo,
     precio,
@@ -71,7 +71,7 @@ document.querySelector(".calcular").addEventListener("click", function() {
     // posCajaPrincipal
   };
 
-  const url = "http://localhost:8000/calculo";
+  const url = "http://localhost:8000/calculo2";
 
   fetch(url, {
     method: "POST",

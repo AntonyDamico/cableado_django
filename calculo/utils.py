@@ -12,6 +12,11 @@ def parseHabitaciones(data, pos_caja_p, const_mts):
 
     return habitaciones
 
+def parseCajas(data, const_mts):
+    cajas = []
+    for caja in data:
+        cajas.append(make_caja(caja, const_mts))
+
 
 def make_habitacion_principal(data, caja_p):
     habitacion_p = Habitacion(
