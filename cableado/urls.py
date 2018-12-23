@@ -20,5 +20,6 @@ from calculo import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.main),
+    path('2', views.main2),
     path('calculo', views.calcular)
 ]

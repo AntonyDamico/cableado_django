@@ -12,6 +12,11 @@ def main(request):
     return render(request, 'calculo/index.html', {})
 
 
+@csrf_exempt
+def main2(request):
+    return render(request, 'calculo/index.html', {})
+
+
 @api_view(['POST'])
 @csrf_exempt
 def calcular(request):
