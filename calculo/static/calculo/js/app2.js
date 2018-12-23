@@ -1,10 +1,6 @@
 const margenErrorUi = document.querySelector("#margen-error");
 const tablaUi = document.querySelector(".tabla-cajas");
 const resultadosDiv = document.querySelector(".resultados-div");
-// const selectPosCajaP = document.querySelector("#pos-caja-principal");
-
-const anchoPrinc = document.querySelector(".p-ancho");
-const altoPrinc = document.querySelector(".p-alto");
 
 let margenError = 12;
 margenErrorUi.value = "12";
@@ -16,12 +12,9 @@ function rangeValue(val) {
 }
 
 // AGREGANDO CAJA
-document
-  .querySelector(".agregar-caja")
-  .addEventListener("click", function() {
-    let indexAcutal =
-      parseInt(cajas[cajas.length - 1].numero) + 1;
-    let tableRow = `
+document.querySelector(".agregar-caja").addEventListener("click", function() {
+  let indexAcutal = parseInt(cajas[cajas.length - 1].numero) + 1;
+  let tableRow = `
         <tr>
             <th class="align-middle">${indexAcutal}</th>
             <td><input type="number" class="computadoras form-control" value='0' min='0'/></td>
@@ -29,29 +22,26 @@ document
             <td><input type="number" class="ypos form-control" value='0' min='0'/></td>
         </tr>
     `;
-    tablaUi.insertAdjacentHTML("beforeend", tableRow);
-    cajas.push(getNewCajaObj());
-  });
+  tablaUi.insertAdjacentHTML("beforeend", tableRow);
+  cajas.push(getNewCajaObj());
+});
 
 //   Eliminar cajas en tabla
-document
-  .querySelector(".borrar-cajas")
-  .addEventListener("click", function(e) {
-    for (let i = 1; i < tablaUi.children.length; i++) {
-      let child = tablaUi.children[i];
-      tablaUi.removeChild(child);
-      i--;
-    }
+document.querySelector(".borrar-cajas").addEventListener("click", function(e) {
+  for (let i = 1; i < tablaUi.children.length; i++) {
+    let child = tablaUi.children[i];
+    tablaUi.removeChild(child);
+    i--;
+  }
 
-    cajas = [cajaObj];
-    resultadosDiv.style.display = "none";
-  });
+  cajas = [cajaObj];
+  resultadosDiv.style.display = "none";
+});
 
 /* Calculando
  * en tabla
  * y guardando
  */
-
 document.querySelector(".calcular").addEventListener("click", function() {
   resultadosDiv.style.display = "block";
   const tablaPisoUiCells = document.querySelector(".tabla-resultados-piso")
@@ -101,7 +91,7 @@ document.querySelector(".calcular").addEventListener("click", function() {
           tablaTotalUiCells[count - 5].innerHTML =
             Math.round(res[key] * 100) / 100;
         } else {
-          console.log('cajas!!!!', res[key])
+          console.log("cajas!!!!", res[key]);
           let cajasArr = JSON.parse(res[key]);
           draw(habitaciones, cajasArr);
         }

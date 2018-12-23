@@ -20,6 +20,7 @@ def main2(request):
 @api_view(['POST'])
 @csrf_exempt
 def calcular(request):
+    print(request.data)
     data = request.data
     pos_caja_p = utils.calcular_pos_caja_principal(data['habitaciones'])
     habitaciones = utils.parseHabitaciones(

@@ -73,3 +73,12 @@ function llenarHabitaciones() {
   }
   return habs;
 }
+
+function llenarCajas() {
+  let cajas = [];
+  for (let i = 0; i < tablaUi.rows.length; i++) {
+    let row = tablaUi.row[i].map(function(x) {
+      
+    });
+  }
+}
