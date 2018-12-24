@@ -54,4 +54,4 @@ def calcular2(request):
         data['precio'],
         data['pisos']
     )
-    return JsonResponse({'d':2})
+    return JsonResponse({'d':respuestas})

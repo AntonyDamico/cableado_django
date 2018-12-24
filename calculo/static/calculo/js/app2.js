@@ -90,10 +90,6 @@ document.querySelector(".calcular").addEventListener("click", function() {
         } else if (count - 5 < tablaTotalUiCells.length) {
           tablaTotalUiCells[count - 5].innerHTML =
             Math.round(res[key] * 100) / 100;
-        } else {
-          console.log("cajas!!!!", res[key]);
-          let cajasArr = JSON.parse(res[key]);
-          draw(habitaciones, cajasArr);
         }
         count++;
       }
