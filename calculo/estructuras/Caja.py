@@ -1,5 +1,5 @@
 class Caja:
-    def __init__(self, x, y, habitacion=None, caja_anterior=None):
+    def __init__(self, x, y, habitacion=None, caja_anterior=None,  computadoras=None):
         '''
         La x & y son la posición de la caja en la habitación
         se toma la esquina superior izquierda como 0,0
@@ -11,6 +11,8 @@ class Caja:
         self.habitacion = habitacion
         if habitacion is not None:
             self.distancia_a_principal = self.calcular_distancia_principal()
+        if computadoras is not None:
+            self.computadoras = computadoras
 
     def calcular_distancia_principal(self):
         '''

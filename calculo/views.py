@@ -44,7 +44,6 @@ def calcular(request):
 @api_view(['POST'])
 @csrf_exempt
 def calcular2(request):
-    print(request.data)
     data = request.data
     cajas = utils.parseCajas(data['cajas'])
     respuestas = utils.calcular_cajas(
@@ -54,4 +53,5 @@ def calcular2(request):
         data['precio'],
         data['pisos']
     )
-    return JsonResponse({'d':respuestas})
+    print(respuestas)
+    return JsonResponse(respuestas)
