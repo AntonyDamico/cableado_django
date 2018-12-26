@@ -55,21 +55,27 @@ def get_cajas_json(habitaciones):
 def calcular_habitaciones(habitaciones, margen_error, precio, pisos):
     cableado_aereo = sum([hab.cableado_aereo for hab in habitaciones])
     cableado_bajada = sum([hab.cableado_bajada for hab in habitaciones])
-    error = (margen_error/100) * (cableado_aereo+cableado_bajada)
-    total_piso = cableado_aereo + cableado_bajada + error
-    precio_piso = total_piso * precio
-    total_edificio = total_piso * pisos
-    precio_edificio = precio_piso * pisos
+    # error = (margen_error/100) * (cableado_aereo+cableado_bajada)
+    # total_piso = cableado_aereo + cableado_bajada + error
+    # precio_piso = total_piso * precio
+    # total_edificio = total_piso * pisos
+    # precio_edificio = precio_piso * pisos
 
-    return {
+    # return {
+    #     'cableado_aereo': cableado_aereo,
+    #     'cableado_bajada': cableado_bajada,
+    #     'error': error,
+    #     'total_piso': total_piso,
+    #     'precio_piso': precio_piso,
+    #     'total_edificio': total_edificio,
+    #     'precio_edificio': precio_edificio
+    # }
+    respuestas = {
         'cableado_aereo': cableado_aereo,
-        'cableado_bajada': cableado_bajada,
-        'error': error,
-        'total_piso': total_piso,
-        'precio_piso': precio_piso,
-        'total_edificio': total_edificio,
-        'precio_edificio': precio_edificio
+        'cableado_bajada': cableado_bajada
     }
+    respuestas.update(calculos_generales(cableado_aereo, cableado_bajada, margen_error, precio, pisos))
+    return respuestas
 
 
 def calcular_cajas(cajas, const_mts, margen_error, precio, pisos):
